@@ -62,6 +62,32 @@ class Tree {
       return;
     }
   }
+
+  deleteItem(value, treeNode = this.root) {
+    if (treeNode === null) return;
+
+    if (value < treeNode.data)
+      treeNode.left = this.deleteItem(value, treeNode.left);
+    else if (value > treeNode.data)
+      treeNode.right = this.deleteItem(value, treeNode.right);
+    else {
+      if (treeNode.left === null) return treeNode.right;
+      if (treeNode.right === null) return treeNode.left;
+
+      const succ = this.getSuccessor(treeNode);
+      treeNode.data = succ.data;
+      treeNode.right = this.deleteItem(succ.data, treeNode.right);
+    }
+
+    return treeNode;
+  }
+
+  getSuccessor(curr) {
+    curr = curr.right;
+    while (curr !== null && curr.left !== null) curr = curr.left;
+
+    return curr;
+  }
 }
 
 export default Tree;

@@ -17,6 +17,22 @@ class Tree {
 
     return root;
   }
+
+  includes(value, checkNode = this.root) {
+    if (checkNode === null) return false;
+
+    if (value === checkNode.data) {
+      return true;
+    }
+
+    if (value < checkNode.data) {
+      return this.includes(value, checkNode.left);
+    }
+
+    if (value > checkNode.data) {
+      return this.includes(value, checkNode.right);
+    }
+  }
 }
 
 export default Tree;

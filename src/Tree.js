@@ -33,6 +33,35 @@ class Tree {
       return this.includes(value, checkNode.right);
     }
   }
+
+  insert(value, treeNode = this.root) {
+    if (this.root === null) {
+      this.root = new Node(value);
+      return;
+    }
+
+    if (value === treeNode.data) return;
+
+    if (value < treeNode.data) {
+      if (treeNode.left !== null) {
+        this.insert(value, treeNode.left);
+      } else {
+        treeNode.left = new Node(value);
+      }
+
+      return;
+    }
+
+    if (value > treeNode.data) {
+      if (treeNode.right !== null) {
+        this.insert(value, treeNode.right);
+      } else {
+        treeNode.right = new Node(value);
+      }
+
+      return;
+    }
+  }
 }
 
 export default Tree;

@@ -1,6 +1,8 @@
 class Node {
-  constructor() {
-    console.log("hi");
+  constructor(data) {
+    this.data = data;
+    this.left = null;
+    this.right = null;
   }
 }
 

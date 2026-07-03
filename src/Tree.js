@@ -153,6 +153,25 @@ class Tree {
     if (value < treeNode.data) return this.find(value, treeNode.left);
     if (value > treeNode.data) return this.find(value, treeNode.right);
   }
+
+  depth(value, rootNode = this.root) {
+    if (rootNode === null) return undefined;
+
+    if (value === rootNode.data) return 0;
+
+    if (value < rootNode.data) {
+      const leftDepth = this.depth(value, rootNode.left);
+      if (leftDepth === undefined) return undefined;
+      return leftDepth + 1;
+    }
+    if (value > rootNode.data) {
+      const rightDepth = this.depth(value, rootNode.right) + 1;
+
+      if (rightDepth === undefined) return undefined;
+
+      return rightDepth + 1;
+    }
+  }
 }
 
 export default Tree;

@@ -128,6 +128,31 @@ class Tree {
     this.postOrderForEach(callback, treeNode.right);
     callback(treeNode.data);
   }
+
+  height(value) {
+    const targetNode = this.find(value);
+
+    if (!targetNode) return undefined;
+
+    return this.calculateHeight(targetNode);
+  }
+
+  calculateHeight(targetNode) {
+    // Helper method
+    if (targetNode === null) return -1;
+    let counter1 = this.calculateHeight(targetNode.left) + 1;
+    let counter2 = this.calculateHeight(targetNode.right) + 1;
+
+    return Math.max(counter1, counter2);
+  }
+
+  find(value, treeNode = this.root) {
+    // Helper method
+    if (treeNode === null) return undefined;
+    if (value === treeNode.data) return treeNode;
+    if (value < treeNode.data) return this.find(value, treeNode.left);
+    if (value > treeNode.data) return this.find(value, treeNode.right);
+  }
 }
 
 export default Tree;

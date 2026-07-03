@@ -88,6 +88,19 @@ class Tree {
 
     return curr;
   }
+
+  levelOrderForEach(callback, queue = this.root ? [this.root] : []) {
+    if (typeof callback !== "function") throw new Error("No callback provided");
+    if (queue.length === 0) return;
+
+    const current = queue.shift();
+    callback(current.data);
+
+    if (current.left !== null) queue.push(current.left);
+    if (current.right !== null) queue.push(current.right);
+
+    this.levelOrderForEach(callback, queue);
+  }
 }
 
 export default Tree;

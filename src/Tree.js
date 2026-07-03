@@ -101,6 +101,33 @@ class Tree {
 
     this.levelOrderForEach(callback, queue);
   }
+
+  inOrderForEach(callback, treeNode = this.root) {
+    if (typeof callback !== "function") throw new Error("No callback provided");
+    if (treeNode === null) return;
+
+    this.inOrderForEach(callback, treeNode.left);
+    callback(treeNode.data);
+    this.inOrderForEach(callback, treeNode.right);
+  }
+
+  preOrderForEach(callback, treeNode = this.root) {
+    if (typeof callback !== "function") throw new Error("No callback provided");
+    if (treeNode === null) return;
+
+    callback(treeNode.data);
+    this.preOrderForEach(callback, treeNode.left);
+    this.preOrderForEach(callback, treeNode.right);
+  }
+
+  postOrderForEach(callback, treeNode = this.root) {
+    if (typeof callback !== "function") throw new Error("No callback provided");
+    if (treeNode === null) return;
+
+    this.postOrderForEach(callback, treeNode.left);
+    this.postOrderForEach(callback, treeNode.right);
+    callback(treeNode.data);
+  }
 }
 
 export default Tree;

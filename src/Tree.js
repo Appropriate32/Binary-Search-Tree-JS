@@ -183,6 +183,18 @@ class Tree {
 
     return this.isBalanced(treeNode.left) && this.isBalanced(treeNode.right);
   }
+
+  rebalance() {
+    const treeArray = [];
+
+    const pushToArray = function (value) {
+      treeArray.push(value);
+    };
+
+    this.inOrderForEach(pushToArray);
+
+    this.root = this.buildTree(treeArray, 0, treeArray.length - 1);
+  }
 }
 
 export default Tree;

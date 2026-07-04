@@ -172,6 +172,17 @@ class Tree {
       return rightDepth + 1;
     }
   }
+
+  isBalanced(treeNode = this.root) {
+    if (treeNode === null) return true;
+    let heightLeft = this.height(treeNode.left);
+    let heightRight = this.height(treeNode.right);
+    let difference = Math.abs(heightLeft - heightRight);
+
+    if (difference > 1) return false;
+
+    return this.isBalanced(treeNode.left) && this.isBalanced(treeNode.right);
+  }
 }
 
 export default Tree;

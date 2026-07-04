@@ -175,8 +175,8 @@ class Tree {
 
   isBalanced(treeNode = this.root) {
     if (treeNode === null) return true;
-    let heightLeft = this.height(treeNode.left);
-    let heightRight = this.height(treeNode.right);
+    let heightLeft = this.calculateHeight(treeNode.left);
+    let heightRight = this.calculateHeight(treeNode.right);
     let difference = Math.abs(heightLeft - heightRight);
 
     if (difference > 1) return false;
